@@ -23,15 +23,28 @@ dependencies {
     compile "org.codehaus.groovy:groovy-all:2.5.7"
 }
 
+task makeFunToFile {
+    doLast {
+        String result = makeFun()
+        new File("build\\love.txt").text = result
+    }
+}
+
 task makeFun {
     doLast {
-        String result = ""
-        if (findProperty("first")) {
-            result += "${findProperty("first")} +"
-        }
-        if (findProperty("second")) {
-            result += " ${findProperty("second")}"
-        }
-        println "\n${result} = boom-boom!\n"
+        String result = makeFun()
+        println result
     }
+}
+
+private String makeFun() {
+    String result = ""
+    if (findProperty("first") != null) {
+        result += "${findProperty("first")} +"
+    }
+    if (findProperty("second") != null) {
+        result += " ${findProperty("second")}"
+    }
+    result += " = boom-boom!"
+    return result
 }

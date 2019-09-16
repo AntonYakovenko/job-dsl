@@ -9,6 +9,9 @@ static Closure explain(@DelegatesTo(FreeStyleJob) Closure cls) {
     return cls
 }
 
+String first = "artem"
+String second = "dasha"
+
 job("shell-gradle-job-${GIT_BRANCH}") with(explain {
     description("Test job for shell and gradle")
     wrappers {
@@ -24,12 +27,6 @@ job("shell-gradle-job-${GIT_BRANCH}") with(explain {
         }
     }
     steps {
-        batchFile("echo hello!")
-        gradle {
-            tasks("makeFun")
-            switches("-Pfirst=artem")
-            switches("-Psecond=dasha")
-            switches("--stacktrace")
-        }
+        batchFile("gradlew ${first ? "-Pfirst=artem" : ""} ${second ? " -Psecond=dasha" : ""} --stacktrace makeFun")
     }
 })
