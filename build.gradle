@@ -22,3 +22,16 @@ dependencies {
     compile "org.jenkins-ci.plugins:job-dsl-core:1.76"
     compile "org.codehaus.groovy:groovy-all:2.5.7"
 }
+
+task makeFun {
+    doLast {
+        String result = ""
+        if (findProperty("first")) {
+            result += "${findProperty("first")} +"
+        }
+        if (findProperty("second")) {
+            result += " ${findProperty("second")}"
+        }
+        println "\n${result} = boom-boom!\n"
+    }
+}

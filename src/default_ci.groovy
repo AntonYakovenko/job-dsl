@@ -25,5 +25,11 @@ job("shell-gradle-job-${GIT_BRANCH}") with(explain {
     }
     steps {
         batchFile("echo hello!")
+        gradle {
+            tasks("makeFun")
+            switches("-Pfirst=artem")
+            switches("-Psecond=dasha")
+            switches("--stacktrace")
+        }
     }
 })
