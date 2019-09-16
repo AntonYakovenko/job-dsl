@@ -7,6 +7,7 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven { url 'http://repo.jenkins-ci.org/releases/' }
 }
 
 sourceSets {
@@ -17,6 +18,12 @@ sourceSets {
     }
 }
 
+//configurations {
+//    jobdsl
+//}
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+//    jobdsl "org.jenkins-ci.plugins:job-dsl-core:1.76"
+    compile "org.jenkins-ci.plugins:job-dsl-core:1.76"
+    compile "org.codehaus.groovy:groovy-all:2.5.7"
 }
