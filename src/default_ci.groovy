@@ -9,16 +9,21 @@ static Closure explain(@DelegatesTo(FreeStyleJob) Closure cls) {
     return cls
 }
 
-job("test-test-${GIT_BRANCH}") {
-    description("Lol")
-}
-
 job("shell-gradle-job-${GIT_BRANCH}") with(explain {
     description("Test job for shell and gradle")
+    wrappers {
+        timestamps()
+    }
     scm {
-        github("AntonYakovenko/job-dsl", "master")
+        git {
+            remote {
+                url(this.GIT_URL)
+                credentials("ssh-github-key-seed")
+            }
+            branch(this.GIT_BRANCH)
+        }
     }
     steps {
-        shell("echo hello!")
+        batchFile("echo hello!")
     }
 })

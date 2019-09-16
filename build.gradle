@@ -18,12 +18,7 @@ sourceSets {
     }
 }
 
-//configurations {
-//    jobdsl
-//}
-
 dependencies {
-//    jobdsl "org.jenkins-ci.plugins:job-dsl-core:1.76"
     compile "org.jenkins-ci.plugins:job-dsl-core:1.76"
     compile "org.codehaus.groovy:groovy-all:2.5.7"
 }
